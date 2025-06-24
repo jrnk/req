@@ -2082,7 +2082,7 @@ defmodule Req.Steps do
     * `:retry_delay` - if not set, which is the default, the retry delay is determined by
       the value of the `Retry-After` header on HTTP 429/503 responses. If the header is not set,
       the default delay follows a simple exponential backoff with jitter, for example:
-      0.949s, 0.197s, 0.387s, 0.755s, ...
+      0.949s, 1.97s, 3.87s, 7.55s, ...
 
       `:retry_delay` can be set to a function that receives the retry count (starting at 0)
       and returns the delay, the number of milliseconds to sleep before making another attempt.
@@ -2097,7 +2097,7 @@ defmodule Req.Steps do
 
       iex> Req.get!("https://httpbin.org/status/500,200")
       # 08:43:19.101 [warning] retry: got response with status 500, will retry in 941ms, 2 attempts left
-      # 08:43:22.958 [warning] retry: got response with status 500, will retry in 1877s, 1 attempt left
+      # 08:43:22.958 [warning] retry: got response with status 500, will retry in 1877ms, 1 attempt left
       200
 
   """
